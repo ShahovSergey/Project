@@ -9,45 +9,45 @@
     >
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvDate"
         android:layout_width="139dp"
         android:layout_height="22dp"
         android:gravity="center_vertical|center_horizontal"
         android:text="25.11.18"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintBottom_toTopOf="@+id/tvJob"
+        app:layout_constraintEnd_toStartOf="@+id/tvXp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/date/ddmmyy" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvXp"
         android:layout_width="245dp"
         android:layout_height="22dp"
         android:gravity="center_horizontal"
         android:text="2500XP"
-        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintBottom_toTopOf="@+id/tvJob"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/tvDate"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/tvJob"
         android:layout_width="347dp"
         android:layout_height="54dp"
         android:gravity="center_vertical|center_horizontal"
         android:text="To do job"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox"
+        app:layout_constraintEnd_toStartOf="@+id/cbIsComplete"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/cbIsComplete"
         android:layout_width="38dp"
         android:layout_height="54dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toEndOf="@+id/tvJob"
+        app:layout_constraintTop_toBottomOf="@+id/tvXp" />
 
 </android.support.constraint.ConstraintLayout>
