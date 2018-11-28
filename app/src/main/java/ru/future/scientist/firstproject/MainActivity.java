@@ -4,12 +4,17 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+
+    JobAdapter adapter;
+    JobGenerator generator = new JobGenerator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        initList();
         return true;
     }
 
@@ -48,5 +54,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initList() {
+        RecyclerView rvJobs = findViewById(R.id.rvAction);
+        rvJobs.setHasFixedSize(true);
+        rvJobs.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new JobAdapter(generator.getJob(5));
+        rvJobs.setAdapter(adapter);
     }
 }

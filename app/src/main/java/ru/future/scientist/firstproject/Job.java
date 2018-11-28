@@ -4,17 +4,24 @@ import java.util.Objects;
 
 public class Job {
     private long id;
-    private int date;
+    private long date;
     private int experience;
     private String text_job;
     private boolean is_complete;
 
-    public Job(int date, int experience, String text_job, boolean is_complete) {
+
+    /**
+     * @param date
+     * @param experience
+     * @param text_job
+     * @param is_complete
+     */
+    public Job(long date, int experience, String text_job, boolean is_complete) {
         this(0, date, experience, text_job,is_complete);
     }
 
 
-    public Job(long id, int date, int experience, String text_job, boolean is_complete) {
+    public Job(long id, long date, int experience, String text_job, boolean is_complete) {
         this.id = id;
         this.date = date;
         this.experience = experience;
@@ -30,11 +37,11 @@ public class Job {
         this.id = id;
     }
 
-    public int getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
