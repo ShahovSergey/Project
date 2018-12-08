@@ -12,7 +12,7 @@ public class JobGenerator {
 
     private Random random = new Random();
 
-    public Job getPerson() {
+    public Job getJob() {
         final String text_job = text_jobs[random.nextInt(text_jobs.length)];
         return new Job(date, experience, text_job, false );
     }
@@ -20,7 +20,7 @@ public class JobGenerator {
     public List<Job> getJob(final int count){
         List<Job> jobs = new ArrayList<>(count);
         for(int i=0; i < count; i++) {
-            jobs.add(getPerson());
+            jobs.add(getJob());
         }
         return jobs;
     }

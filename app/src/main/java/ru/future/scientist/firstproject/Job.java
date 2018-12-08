@@ -2,7 +2,13 @@ package ru.future.scientist.firstproject;
 
 import java.util.Objects;
 
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "jobs")
 public class Job {
+    @PrimaryKey(autoGenerate = true)
     private long id;
     private long date;
     private int experience;
@@ -16,10 +22,10 @@ public class Job {
      * @param text_job
      * @param is_complete
      */
+    @Ignore
     public Job(long date, int experience, String text_job, boolean is_complete) {
         this(0, date, experience, text_job,is_complete);
     }
-
 
     public Job(long id, long date, int experience, String text_job, boolean is_complete) {
         this.id = id;
