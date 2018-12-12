@@ -2,12 +2,16 @@ package ru.future.scientist.firstproject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -25,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        initList();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(view -> {
@@ -33,34 +38,26 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    @Override
- //   public boolean onCreateOptionsMenu(Menu menu) {
-   //     // Inflate the menu; this adds items to the action bar if it is present.
-     //   getMenuInflater().inflate(R.menu.menu_main, menu);
-       // initList();
- //       return true;
-   // }
-
- /*   @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateList();
     }
-*/
+
+    private void updateList() {
+        List<Job> jobs = AppDatabase.getInstance(this).jobDao().getAll();
+        adapter.update(jobs);
+    }
+
+
     private void initList() {
         RecyclerView rvJobs = findViewById(R.id.rvAction);
         rvJobs.setHasFixedSize(true);
         rvJobs.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new JobAdapter(generator.getJob(5));
+        List<Job> jobs = AppDatabase.getInstance(this).jobDao().getAll();
+        adapter = new JobAdapter(jobs, item -> {
+            Toast.makeText(this, item.getText_job(), Toast.LENGTH_LONG).show();
+        });
         rvJobs.setAdapter(adapter);
     }
 }

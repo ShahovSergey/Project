@@ -15,9 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
     List<Job> jobs;
+    private OnItemClickListener itemClickListener;
 
-    public JobAdapter(List<Job> jobs) {
+    public JobAdapter(List<Job> jobs, OnItemClickListener itemClickListener) {
         this.jobs = jobs;
+        this.itemClickListener = itemClickListener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Job item);
     }
 
     @NonNull
@@ -29,7 +35,7 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull JobViewHolder holder, int position) {
-        holder.bind(jobs.get(position));
+        holder.bind(jobs.get(position),itemClickListener);
     }
 
     @Override
@@ -52,10 +58,20 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.JobViewHolder> {
             tvJob = itemView.findViewById(R.id.tvJob);
             cbIsComplete = itemView.findViewById(R.id.cbIsComplete);
         }
-        public void bind(Job job) {
+        public void bind(Job job,  final OnItemClickListener itemClickListener) {
+            itemView.setOnClickListener(v -> itemClickListener.onItemClick(job));
+
             tvDate.setText(new Date(job.getDate()).toString());
             tvJob.setText(job.getText_job());
             tvXp.setText(String.valueOf(job.getExperience()));
         }
     }
+
+    public void update(List<Job> people){
+        this.jobs.clear();
+        this.jobs.addAll(people);
+        notifyDataSetChanged();
+    }
+
+
 }

@@ -74,7 +74,7 @@ public class AddJobActivity extends AppCompatActivity {
                 Log.e("AddPersonActivity", "Date parse error", e);
             }
             Job job = new Job(date, experience, textJob, false);
-            //AppDatabase.getInstance(this).personDao().insertPerson(job);
+            AppDatabase.getInstance(this).jobDao().insertJob(   job);
             finish();
             return true;
         } else {
